@@ -113,13 +113,17 @@ tests = [
 cmd = None
 while cmd is None:
     try:
+        print()
         print('Select:')
         for i in range(0, len(tests)):
             print('  %d. %s' % (i, tests[i].name()))
+        print('  %d. exit' % len(tests))
         cmd = int(input('Please type a number: '))
-        if cmd < 0 or len(tests) <= cmd:
+        if cmd < 0 or len(tests) < cmd:
             cmd = None
     except Exception as ex:
         pass
+
+if cmd < len(tests):
     print('Run %s...' % tests[cmd].name())
     tests[cmd]().run()
